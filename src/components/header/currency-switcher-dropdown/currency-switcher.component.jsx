@@ -7,41 +7,13 @@ import {
 } from "./currency-switcher.styles";
 
 import {
-  toggleSwitcherHidden,
   setCurrency,
 } from "../../../redux/switcher/switcher.actions";
 
-import { CURRENCIES } from "../../../graphql/queries";
-
 class CurrencySwitcher extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.wrapperRef = React.createRef();
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
-
-  componentDidMount() {
-    document.addEventListener("mousedown", this.handleClickOutside);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClickOutside);
-  }
-
-  handleClickOutside(event) {
-    if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
-      this.props.toggleSwitcherHidden();
-    }
-  }
 
   render() {
-    const { queryData } = this.props;
-
-    if (queryData) {
-      console.log("CURRENCIES: ");
-      console.log(queryData);
-    }
+    const { queryData, setSiteCurrency } = this.props;
 
     let loadData;
 
@@ -49,19 +21,19 @@ class CurrencySwitcher extends React.Component {
       loadData = queryData.currencies.map((currency) => (
         <CurrencyItemConstainer
           key={currency.symbol}
-          onClick={() => this.props.setSiteCurrency(currency)}
+          onClick={() => setSiteCurrency(currency)}
         >
           <span className="signSpan">{currency.symbol}</span>
           <span>{currency.label}</span>
         </CurrencyItemConstainer>
       ));
     } else {
-      loadData = <h1>LOADING</h1>; // TO DO
+      loadData = <h1>LOADING</h1>; 
     }
 
     return (
-      <CurrencySwitcherContainer ref={this.wrapperRef}>
-        <span></span>
+      <CurrencySwitcherContainer>
+        <span/>
         {loadData}
       </CurrencySwitcherContainer>
     );
@@ -69,7 +41,6 @@ class CurrencySwitcher extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleSwitcherHidden: () => dispatch(toggleSwitcherHidden()),
   setSiteCurrency: (currency) => dispatch(setCurrency(currency)),
 });
 

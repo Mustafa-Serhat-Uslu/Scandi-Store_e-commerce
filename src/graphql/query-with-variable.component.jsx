@@ -4,11 +4,8 @@ import { useQuery } from "@apollo/client";
 // This utility component take a query call and adds the returned data to childs props as "queryData"
 
 const QueryWithVar = ({ query, queryVariable, children, ...other }) => {
-  var { data, loading, error } = useQuery(query, queryVariable);
+  const { data, error } = useQuery(query, queryVariable);
 
-  if (loading) {
-    console.log("Fetching query data...");
-  }
   if (error) {
     console.log(error.message);
   }

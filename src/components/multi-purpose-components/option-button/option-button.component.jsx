@@ -9,35 +9,55 @@ import {
 
 class OptionButton extends React.Component {
   render() {
-    const { onMiniCart, option, isSelected, stockStatus, runClick, isColor, colorCode } = this.props;
+    const {
+      onMiniCart,
+      option,
+      isSelected,
+      stockStatus,
+      runClick,
+      isColor,
+      colorCode,
+      value,
+    } = this.props;
 
     let classNames = "";
     isSelected === option && (classNames += "selected");
     onMiniCart && (classNames += " onMiniCart");
     stockStatus && (classNames += " inStock");
 
+    let miniCartOption = value;
+    if (onMiniCart) { // if contains numbers, only keep number
+      const hasNumber = /\d/;
+
+      if (hasNumber.test(option)) {
+        miniCartOption = value.replace(/\D/g, "");
+      }
+    }
+
     let button;
-    if (!isColor) {                   // ##### NORMAL ATTRIBUTE BUTTON #####
+    if (!isColor) { // ##### NORMAL ATTRIBUTE BUTTON #####
       button = (
         <OptionButtonContainer
           className={classNames}
           onClick={!onMiniCart ? runClick : undefined}
         >
-          <SelectionNameSpan className={classNames}>{option}</SelectionNameSpan>
+          <SelectionNameSpan className={classNames}>
+            {onMiniCart ? miniCartOption : option}
+          </SelectionNameSpan>
         </OptionButtonContainer>
       );
-    } else {                           // ##### COLOR ATTRIBUTE BUTTON #####
+    } else { // ##### COLOR ATTRIBUTE BUTTON #####
       button = (
-        <ColorOptionButtonContainer 
-          className={classNames} 
+        <ColorOptionButtonContainer
+          className={classNames}
           onClick={!onMiniCart ? runClick : undefined}
-          >
+        >
           <ColorOptionButton className={classNames} buttonColor={colorCode} />
         </ColorOptionButtonContainer>
       );
     }
 
-    return(<>{button}</>);
+    return <>{button}</>;
   }
 }
 

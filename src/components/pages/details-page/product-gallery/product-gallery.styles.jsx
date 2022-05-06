@@ -26,4 +26,9 @@ export const BigImage = styled.img`
   position: static;
   width: 610px;
   height: 511px;
+  object-fit: scale-down;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  
 `;
+

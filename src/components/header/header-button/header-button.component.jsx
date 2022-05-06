@@ -5,24 +5,18 @@ import {
   HeaderButtonContainer,
   ButtonLabel,
   ButtonBorder,
-  ButtonOuterLabel
+  ButtonOuterLabel,
 } from "./header-button.styles";
 
 class HeaderButton extends React.Component {
   render() {
-    let {
-      category,
-      // isSelected,
-      runClick,
-      history,
-      match,
-      lastUrlToken
-    } = this.props;
+    const { category } = this.props;
+    let { lastUrlToken } = this.props;
 
-    if (lastUrlToken === ""){
+    if (lastUrlToken === "") {
       lastUrlToken = "all";
-    }
-    else if (lastUrlToken === "cart") { // To disable NavBar highlighting on CartPage
+    } else if (lastUrlToken === "cart") {
+      // To disable NavBar highlighting on CartPage
       lastUrlToken = "";
     }
 
@@ -31,8 +25,7 @@ class HeaderButton extends React.Component {
         to={"/category/" + category}
         className={lastUrlToken === category ? "selected" : undefined}
         onClick={() => {
-          // runClick();
-          // history.push(`${match.url}${category}`);
+          window.scrollTo(0, 0);
         }}
       >
         <ButtonOuterLabel>

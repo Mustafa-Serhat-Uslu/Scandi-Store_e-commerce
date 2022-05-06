@@ -12,6 +12,7 @@ export const OptionButtonContainer = styled.button`
   justify-content: center;
   border: 1px solid #1d1f22;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 
   > span {
     font-size: "14px";
@@ -28,12 +29,13 @@ export const OptionButtonContainer = styled.button`
   }
 
   &.onMiniCart {
-    width: 37px;
+    width: 22px;
     height: 22px;
     right: 2px;
+
     > span {
       font-size: 10px;
-    }    
+    }
   }
 `;
 
@@ -48,8 +50,8 @@ export const ColorOptionButtonContainer = styled.div`
   cursor: pointer;
 
   &.onMiniCart {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
   }
 
   &.selected {
@@ -63,6 +65,9 @@ export const ColorOptionButton = styled.button`
   height: 90%;
   border: 1px dotted lightgray;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   background: ${({ buttonColor }) => buttonColor};
 
@@ -72,12 +77,15 @@ export const ColorOptionButton = styled.button`
 `;
 
 export const SelectionNameSpan = styled.span`
-
   font-family: "Source Sans Pro";
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
 
   &.onMiniCart {
-    font-size: 2px;
+    font-size: 4px;
   }
 `;

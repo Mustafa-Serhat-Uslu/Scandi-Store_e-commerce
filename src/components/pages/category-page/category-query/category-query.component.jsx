@@ -1,5 +1,4 @@
 import React from "react";
-import { gql } from "@apollo/client";
 
 import QueryWithVar from "../../../../graphql/query-with-variable.component";
 import ProductsOverview from "../product-overview/product-overview.component";
@@ -9,9 +8,10 @@ import { CATEGORY } from "../../../../graphql/queries";
 
 class CategoryQuery extends React.Component {
   render() {
-    let categoryName = this.props.match.params.categoryId;
+    const {match} = this.props;
+    let categoryName = match.params.categoryId;
 
-    if (categoryName == undefined){ // On default route categoryName is undefined
+    if (categoryName === undefined){ // On default route categoryName is undefined
       categoryName = "all";
     }
 

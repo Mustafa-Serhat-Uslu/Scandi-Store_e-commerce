@@ -47,6 +47,7 @@ export const CurrencyItemConstainer = styled.div`
   :hover {
     box-shadow: 0px 2px 6px 0px lightgray;
     transform: scale(1.05);
+    background-color: #EEEEEE;
   }
 
   > span {

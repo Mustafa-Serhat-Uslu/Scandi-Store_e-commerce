@@ -7,28 +7,26 @@ import OptionButton from "../option-button/option-button.component";
 import { setAttribute } from "../../../redux/options/options.actions";
 
 class Options extends React.Component {
-
   constructor(props) {
     super(props);
 
     let selectedOp;
-    const {attributeChoice} = this.props;
-    
-    attributeChoice ? selectedOp = attributeChoice : selectedOp = "";
+    const { attributeChoice } = this.props;
 
-    this.state = { selectedOption: selectedOp}
+    attributeChoice ? (selectedOp = attributeChoice) : (selectedOp = "");
+
+    this.state = { selectedOption: selectedOp };
   }
 
   handleClick(e) {
+    const { name, productId, setOption } = this.props;
     this.setState({ selectedOption: e });
-
-    const { name, productId, setOption, attributeCount } = this.props;
-
-    setOption({ id: productId, [name]: e }); // set global state for this objects attribute selections
+    setOption({ id: productId, [name]: e }); // Set global state for this objects attribute selections
   }
 
   render() {
-    const { options, placement, isColor, inStock, productId } = this.props;
+    const { options, placement, isColor, inStock } = this.props;
+    const { selectedOption } = this.state;
     let loadingOrShowOptions;
 
     if (options) {
@@ -37,8 +35,9 @@ class Options extends React.Component {
           key={value}
           onMiniCart={placement === "onMiniCart" ? true : false}
           runClick={() => this.handleClick(displayValue)}
-          isSelected={this.state.selectedOption}
+          isSelected={selectedOption}
           option={displayValue}
+          value={value}
           stockStatus={inStock}
           colorCode={value}
           isColor={isColor}

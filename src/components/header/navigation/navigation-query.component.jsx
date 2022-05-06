@@ -1,5 +1,4 @@
 import React from "react";
-import { gql } from "@apollo/client";
 
 import Query from "../../../graphql/query.component";
 import Navigation from "./navigation.component";

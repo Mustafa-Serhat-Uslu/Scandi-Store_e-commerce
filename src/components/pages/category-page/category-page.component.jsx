@@ -1,9 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import CategoryQuery from "./category-query/category-query.component"; 
+import CategoryQuery from "./category-query/category-query.component";
 
 class CategoryPage extends React.Component {
-  
   render() {
     const { match } = this.props;
 

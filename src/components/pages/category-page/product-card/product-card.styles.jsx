@@ -10,6 +10,7 @@ export const CardContainer = styled.div`
   align-items: center;
   justify-content: space-evenly;
   cursor: pointer;
+  transition: all 0.15s ease-in-out;
 
   &:hover {
     box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.5);
@@ -26,7 +27,6 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 356px;
   height: 338px;
-  background: lightgray;
 
   .outOfStockLabelContainer {
     position: absolute;
@@ -36,13 +36,14 @@ export const ImageContainer = styled.div`
     justify-content: center;
   }
 
-  .productCardImage{
+  .productCardImage {
     position: relative;
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
+    background-size: 100%;
+    filter: alpha(opacity=40);
   }
-
 `;
 
 export const ContentContainer = styled.div`
@@ -86,31 +87,11 @@ export const GreenCartContainer = styled.div`
 export const OutOfStockLabel = styled.span`
   position: relative;
   font-family: "Raleway";
-  font-weight: 500;
+  font-weight: 400;
   font-size: 26px;
   line-height: 180%;
   display: ${({ inStock }) => (inStock ? "none" : "block")};
   color: #8d8f9a;
   top: 140px;
   z-index: 1;
-
-  &.outOfStockAnimation {
-    animation-name: anim;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: both;
-    animation-iteration-count: 2;
-    animation-direction: alternate;
-  }
-
-  @keyframes anim {
-    from {
-      font-size: 26px;
-      color: #8d8f9a;
-    }
-    to {
-      font-size: 48px;
-      color: red;
-    }
-  }
 `;

@@ -13,9 +13,9 @@ export const EmptyCartContainer = styled.div`
   flex-grow: 0;
   margin: 0px 10px;
   cursor: pointer;
+  transition: all 0.15s ease-in-out;
 
   :hover {
-    transition: all 0.15s ease-in-out;
     transform: scale(1.1);
   }
 `;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
@@ -17,43 +17,44 @@ import {
   AttributesContainer,
 } from "./product-details.styles";
 
-import { selectedAttributeCounts, selectAttributes } from "../../../../redux/options/options.selectors";
+import {
+  selectedAttributeCounts,
+  selectAttributes,
+} from "../../../../redux/options/options.selectors";
 import { selectCurrency } from "../../../../redux/switcher/switcher.selectors";
-import { addItem, clearCart } from "../../../../redux/cart/cart.actions";
+import { addItem } from "../../../../redux/cart/cart.actions";
 
 import Popup from "./../../../multi-purpose-components/popup/popup.component";
 import AttributeOptions from "../../../multi-purpose-components/attribute-options/attribute-options.components";
 import FilledButton from "../../../multi-purpose-components/filled-button/filled-button.component";
 import ProductGallery from "../product-gallery/product-gallery.component";
 import Spinner from "../../../multi-purpose-components/spinner/spinner.component";
+import { Parser } from "html-to-react";
 
 class ProductDetails extends React.Component {
-
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = { initPopup: false }; 
+    this.state = { initPopup: false };
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
   }
 
   render() {
-
-    const {
-      queryData,
-      siteCurrency,
-      addItemToCart,
-      clearCart,
-      readyProducts,
-      selectAttributes,
-      selectedAttributeCounts,
-    } = this.props;
+    const { queryData, siteCurrency, addItemToCart, selectAttributes } =
+      this.props;
 
     let loadOrShowDetailsPage;
 
-    if (queryData) {                      // ########## IF DATA FETCHED ########## //
+    if (queryData) {
+      // ########## IF DATA FETCHED ########## //
+
+      const { initPopup } = this.state;
 
       const {
         attributes,
         brand,
-        category,
         description,
         gallery,
         id,
@@ -64,44 +65,50 @@ class ProductDetails extends React.Component {
 
       // attributesWithSelectedChoices is used by individual buttons {id: 'apple-imac-2021', Capacity: '512GB', ...}
       let attributesWithSelectedChoices = Object.values(selectAttributes).find(
-      (productSelections) => productSelections.id == id);
+        (productSelections) => productSelections.id === id
+      );
 
-      if(!attributesWithSelectedChoices){
-        attributesWithSelectedChoices = {id: id};
+      if (!attributesWithSelectedChoices) {
+        attributesWithSelectedChoices = { id: id };
       }
 
       // Passed to popup to run on popup button click
       let resetPopupState = () => {
-        this.setState({initPopup: false });
-      }
+        this.setState({ initPopup: false });
+      };
 
       // Set price label
       const priceInSelectedCurrency = prices.filter(
-        (price) => price.currency.label === siteCurrency.label);
+        (price) => price.currency.label === siteCurrency.label
+      );
 
-      const displayedPrice = siteCurrency.symbol + priceInSelectedCurrency[0].amount;
+      const displayedPrice =
+        siteCurrency.symbol + priceInSelectedCurrency[0].amount.toFixed(2);
 
       // Check if item can be added to cart
-      let addToCartActive = attributes.length == 0 ? true : false; 
-      
-      let selectedAttributeCount = selectedAttributeCounts.filter(
-        item => item.id == id).map(item => item["selectedAttributeCount"]);
+      let addToCartActive = attributes.length === 0 ? true : false;
 
-      attributesWithSelectedChoices["prices"] = JSON.parse(JSON.stringify(prices));
+      attributesWithSelectedChoices["prices"] = JSON.parse(
+        JSON.stringify(prices)
+      );
 
-      if (Object.keys(attributesWithSelectedChoices).length -2 == attributes.length){
+      if (
+        Object.keys(attributesWithSelectedChoices).length - 2 ===
+        attributes.length
+      ) {
         addToCartActive = true;
       }
 
       // AddToCart button press triggers this function
       let handleAddToCart = () => {
-        if (addToCartActive){ 
-          addItemToCart(JSON.parse(JSON.stringify(attributesWithSelectedChoices)))
-        } 
-        else{
-          this.setState({initPopup: true });
-        }  
-      }
+        if (addToCartActive) {
+          addItemToCart(
+            JSON.parse(JSON.stringify(attributesWithSelectedChoices))
+          );
+        } else {
+          this.setState({ initPopup: true });
+        }
+      };
 
       loadOrShowDetailsPage = (
         <DetailsContainer>
@@ -123,37 +130,39 @@ class ProductDetails extends React.Component {
                     inStock={inStock}
                     productId={id}
                     attributeCount={attributes.length}
-                    attributesWithSelectedChoices={attributesWithSelectedChoices}
+                    attributesWithSelectedChoices={
+                      attributesWithSelectedChoices
+                    }
                   />
                 ))}
               </AttributesContainer>
 
               <PriceInfoContainer>
-                <PriceTextSpan>Price:</PriceTextSpan>
+                <PriceTextSpan>PRICE:</PriceTextSpan>
                 <PriceTagSpan>{displayedPrice}</PriceTagSpan>
               </PriceInfoContainer>
 
               <FilledButton
                 placement="onDetailsPage"
                 inStock={inStock}
-                buttonText={ inStock ? "ADD TO CART" : "OUT OF STOCK"}
-                customClickEvent={ () => inStock && handleAddToCart() } 
+                buttonText={inStock ? "ADD TO CART" : "OUT OF STOCK"}
+                customClickEvent={() => inStock && handleAddToCart()}
               />
 
               <DescriptionContainer>
-                <div dangerouslySetInnerHTML={{ __html: description }} />
+                <Fragment>{Parser().parse(description)}</Fragment>
               </DescriptionContainer>
             </OptionDetailsContainer>
           </MainDetails>
 
-          {this.state.initPopup && <Popup initPopup={true} customEvent={() => resetPopupState()} />}
-
+          {initPopup && (
+            <Popup initPopup={true} customEvent={() => resetPopupState()} />
+          )}
         </DetailsContainer>
       );
-    } 
-    else                                             // ########## NO DATA ########## //
-    { 
-      loadOrShowDetailsPage = <Spinner/>; 
+    } // ########## NO DATA ########## //
+    else {
+      loadOrShowDetailsPage = <Spinner />;
     }
 
     return <DetailsPageContainer>{loadOrShowDetailsPage}</DetailsPageContainer>;
@@ -168,7 +177,6 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   addItemToCart: (item) => dispatch(addItem(item)),
-  clearCart: () => dispatch(clearCart())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

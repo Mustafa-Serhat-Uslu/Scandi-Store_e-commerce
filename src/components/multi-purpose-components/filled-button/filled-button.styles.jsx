@@ -5,7 +5,7 @@ export const FilledButtonContainer = styled.button`
   border: 0px;
   cursor: pointer;
   transition: all 0.12s ease-in-out;
-  background: ${({inStock}) => inStock ? "#5ece7b" : "#474747"};
+  background: ${({ inStock }) => (inStock ? "#5ece7b" : "#474747")};
 
   /* added */
   height: 43px;
@@ -25,7 +25,7 @@ export const FilledButtonContainer = styled.button`
       inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
       inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
 
-      background: ${({inStock}) => !inStock && "red"};
+    background: ${({ inStock }) => !inStock && "red"};
   }
 
   &.onPopup {
@@ -68,7 +68,7 @@ export const FilledButtonText = styled.div`
   text-transform: uppercase;
   color: #ffffff;
   justify-content: center;
-  
+
   font-size: 14px;
   line-height: 120%;
 

@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const LogoTransparent = styled.div`
-  /* logo transparent */
-
+  /* transparent logo */
   position: absolute;
   width: 41px;
   left: calc(50% - 41px / 2);

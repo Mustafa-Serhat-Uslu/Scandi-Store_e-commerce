@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PopupWindow = styled.div`
-  position: absolute;
+  position: fixed;
   display: ${({ isActive }) => (isActive ? "flex" : "none")};
   justify-content: center;
   align-items: center;

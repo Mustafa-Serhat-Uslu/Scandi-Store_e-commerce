@@ -17,6 +17,7 @@ export const SwitcherIconContainer = styled.div`
   flex-direction: row;
   align-content: space-between;
   justify-content: space-between;
+  transition: all 0.15s ease-in-out;
 
   > span {
     font-family: "Raleway";
@@ -27,7 +28,6 @@ export const SwitcherIconContainer = styled.div`
   }
 
   :hover {
-    transition: all 0.15s ease-in-out;
     transform: scale(1.2);
   }
 `;

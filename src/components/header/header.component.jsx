@@ -9,7 +9,10 @@ import {
   ActionsContainer,
 } from "./header.styles";
 
-import { selectCartHidden, selectCartTotal, selectCartItemsCount } from "../../redux/cart/cart.selectors";
+import {
+  selectCartHidden,
+  selectCartItemsCount,
+} from "../../redux/cart/cart.selectors";
 import { selectSwitcherHidden } from "../../redux/switcher/switcher.selectors";
 import { selectCurrency } from "../../redux/switcher/switcher.selectors";
 
@@ -23,14 +26,9 @@ import NavigationQuery from "./navigation/navigation-query.component";
 import Query from "../../graphql/query.component";
 import { CURRENCIES } from "../../graphql/queries";
 
-const selectCartItems = [1, 2, 3, 4, 5, 6, 7];
-
 class Header extends React.Component {
   render() {
-    const { miniCartHidden, switcherHidden, selectCartTotal, selectCartItemsCount, siteCurrency } = this.props;
-
-    const totalPrice = selectCartTotal.map(it => it.prices.filter(
-      (price) => price.currency.label === siteCurrency.label)[0]["amount"] * it.quantity).reduce((partialSum, a) => partialSum + a, 0);
+    const { miniCartHidden, switcherHidden, selectCartItemsCount } = this.props;
 
     return (
       <HeaderContainer>
@@ -44,7 +42,7 @@ class Header extends React.Component {
           <SwitcherIcon />
           <CartIcon cartCount={selectCartItemsCount} />
         </ActionsContainer>
-        {miniCartHidden ? null : <MiniCart selectCartItems={selectCartItems} />}
+        {miniCartHidden ? null : <MiniCart />}
         {switcherHidden ? null : (
           <Query query={CURRENCIES}>
             <CurrencySwitcher />
@@ -58,9 +56,8 @@ class Header extends React.Component {
 const mapStateToProps = createStructuredSelector({
   siteCurrency: selectCurrency,
   miniCartHidden: selectCartHidden,
-  selectCartTotal: selectCartTotal,
   switcherHidden: selectSwitcherHidden,
-  selectCartItemsCount: selectCartItemsCount
+  selectCartItemsCount: selectCartItemsCount,
 });
 
 export default connect(mapStateToProps)(Header);

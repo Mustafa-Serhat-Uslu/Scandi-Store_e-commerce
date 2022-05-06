@@ -22,7 +22,8 @@ export const SizeButtonsContainer = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    column-gap: 2px;
+    column-gap: 8px;
+    left: 2px;
   }
 
   &.onDetailsPage {

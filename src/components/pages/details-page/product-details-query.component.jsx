@@ -7,9 +7,10 @@ import { PRODUCT } from "../../../graphql/queries";
 class ProductQuery extends React.Component {
   render() {
     const { match } = this.props;
-    const queryVariable = { variables: { productId: match.params.detailsProductId } };
-    
-    // TODO if productId is not valid render the home page 
+    const queryVariable = {
+      variables: { productId: match.params.detailsProductId },
+    };
+
     return (
       <QueryWithVar query={PRODUCT} queryVariable={queryVariable}>
         <ProductDetails />

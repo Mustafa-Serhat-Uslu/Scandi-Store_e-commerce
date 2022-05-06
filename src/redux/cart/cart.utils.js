@@ -17,9 +17,6 @@ export const addItemToCart = (cartItems, newItem) => {
 
 // Decreases item count of cartItem or removes the item if count drops below 1
 export const removeItemFromCart = (cartItems, cartItemToRemove) => {
-  const existingCartItem = cartItems.find((cartItem) =>
-    compareObjects(cartItem.item, cartItemToRemove)
-  );
 
   let newCartItems = cartItems.map((cartItem) =>
     compareObjects(cartItem.item, cartItemToRemove)
@@ -33,7 +30,7 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
 // Utility function to compare two objects
 function compareObjects(o1, o2) {
   for (var p in o1) {
-    if (p != "prices") {
+    if (p !== "prices") {
       if (o1.hasOwnProperty(p)) {
         if (o1[p] !== o2[p]) {
           return false;

@@ -10,7 +10,7 @@ import Spinner from "../../../multi-purpose-components/spinner/spinner.component
 
 class ProductsOverview extends React.Component {
   render() {
-    let { queryData, categoryName } = this.props;
+    const { queryData, categoryName } = this.props;
 
     let loadOrShowData;
 
@@ -23,7 +23,7 @@ class ProductsOverview extends React.Component {
         </CardItemsContainer>
       );
     } else {
-      loadOrShowData = <Spinner/>; 
+      loadOrShowData = <Spinner />;
     }
 
     return (

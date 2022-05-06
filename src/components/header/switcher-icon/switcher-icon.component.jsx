@@ -14,9 +14,12 @@ import { selectCurrency } from "../../../redux/switcher/switcher.selectors";
 
 class SwitcherIcon extends React.Component {
   render() {
+    const { siteCurrency, toggleSwitcherHidden } = this.props;
+    const currencySymbol = siteCurrency.symbol;
+
     return (
-      <SwitcherIconContainer onClick={this.props.toggleSwitcherHidden}>
-        <span>{this.props.siteCurrency.symbol}</span>
+      <SwitcherIconContainer onClick={toggleSwitcherHidden}>
+        <span>{currencySymbol}</span>
         <DownArrowContainer>
           <DownArrowSvg />
         </DownArrowContainer>

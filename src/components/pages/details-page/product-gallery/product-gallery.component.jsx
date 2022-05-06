@@ -11,11 +11,13 @@ import {
 class ProductGallery extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { images: JSON.parse(JSON.stringify(this.props.imgs)) };
+    const { imgs } = this.props;
+    this.state = { images: JSON.parse(JSON.stringify(imgs)) };
   }
 
   render() {
-    const Images = this.state.images;
+    const {images} = this.state;
+    const Images = images;
 
     var littleImages = [];
     for (let i = 1; i < Images.length; i++) {

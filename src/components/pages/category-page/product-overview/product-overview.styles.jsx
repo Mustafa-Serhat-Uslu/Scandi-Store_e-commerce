@@ -28,7 +28,7 @@ export const CategoryName = styled.div`
   top: 18%;
   position: absolute;
   font-family: "Raleway";
-  font-weight: 100;
+  font-weight: 400;
   font-size: 38px;
   display: flex;
   align-items: center;

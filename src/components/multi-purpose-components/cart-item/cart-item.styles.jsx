@@ -1,23 +1,26 @@
 import styled from "styled-components";
-import { SizeButtonsContainer } from "../options/options.component";
 
 export const CartItemContainer = styled.div`
   position: relative;
 
   &.onMiniCart {
     width: 94%;
-    height: 190px;
+    height: ${({ heightOfMiniCartItem }) => heightOfMiniCartItem};
     display: flex;
     flex-direction: row;
     align-content: space-between;
     justify-content: space-between;
     margin: 18px 22px;
     right: 10px;
+
+    :hover {
+      transition: all 20s ease-in-out;
+      background-color: #fafafa;
+    }
   }
 
   &.onCartPage {
     width: 100%;
-    height: 295px;
     display: flex;
     flex-direction: row;
     align-content: space-between;
@@ -32,19 +35,16 @@ export const LeftPaneContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-
-  &.onMiniCart{
+  &.onMiniCart {
     row-gap: 0px;
-    justify-content: space-between;
-
+    justify-content: flex-start;
   }
 
-  &.onCartPage{
+  &.onCartPage {
     row-gap: 14px;
     justify-content: flex-start;
     align-content: space-between;
   }
-
 `;
 
 export const RightPaneContainer = styled.div`
@@ -52,15 +52,17 @@ export const RightPaneContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
   width: 35%;
-  height: 100%;
+
+  &.onCartPage {
+    min-height: 300px;
+  }
 `;
 
 export const ItemBrandSpan = styled.span`
   font-family: "Raleway";
   font-style: normal;
-  /* font-weight: ${({ onMini }) => (onMini ? "300" : "600")}; */
-  /* font-size: ${({ onMini }) => (onMini ? "16px" : "30px")}; */
   line-height: 27px;
   color: #1d1f22;
 
@@ -79,7 +81,6 @@ export const ItemTypeSpan = styled.span`
   font-family: "Raleway";
   font-style: normal;
   font-weight: 400;
-  /* font-size: ${({ onMini }) => (onMini ? "16px" : "30px")}; */
   line-height: 27px;
   color: #1d1f22;
 
@@ -96,14 +97,13 @@ export const ItemPriceSpan = styled.span`
   height: 42px;
   font-family: "Raleway";
   font-style: normal;
-  /* font-weight: ${({ onMini }) => (onMini ? "600" : "700")};
-  font-size: ${({ onMini }) => (onMini ? "16px" : "30px")}; */
   line-height: 18px;
   color: #1d1f22;
 
   &.onMiniCart {
     font-weight: 600;
     font-size: 16px;
+    margin: 12px 0px;
   }
 
   &.onCartPage {
@@ -118,18 +118,17 @@ export const AmountPaneContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-content: center;
-  
+  align-content: space-between;
+
   &.onMiniCart {
-    right: 4px;
-    height: 99%;
+    right: 8px;
+    height: 94%;
   }
 
   &.onCartPage {
     right: 15px;
     height: 100%;
   }
-
 `;
 
 export const CartItemVisualContainer = styled.div`
@@ -141,15 +140,13 @@ export const CartItemVisualContainer = styled.div`
     position: relative;
     width: 108px;
     height: 100%;
-
-    background: url(image.png);
   }
 `;
 
 export const QuantitySpan = styled.div`
   display: flex;
   justify-content: center;
-  
+
   font-family: "Raleway";
   font-style: normal;
   font-weight: 600;
@@ -159,7 +156,6 @@ export const QuantitySpan = styled.div`
   &.onMiniCart {
     font-size: 16px;
   }
-
 `;
 
 export const AttributesContainer = styled.div`
@@ -168,9 +164,9 @@ export const AttributesContainer = styled.div`
   flex-direction: column;
   row-gap: 3px;
   pointer-events: none;
+`;
 
-  &.onMiniCart{
-    
-  }
-
+export const MiniCartImage = styled.img`
+  object-fit: contain;
+  background-repeat: no-repeat;
 `;

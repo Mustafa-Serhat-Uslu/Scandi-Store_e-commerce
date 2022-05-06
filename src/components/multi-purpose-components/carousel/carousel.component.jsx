@@ -20,14 +20,16 @@ class Carousel extends React.Component {
   }
 
   Slide(direction) {
+    const {imageIdx} = this.state;
+    const { images } = this.props;
     const change = direction === RIGHT ? RIGHT : LEFT;
-    const adjustedIdx = this.state.imageIdx + Number(change);
+    const adjustedIdx = imageIdx + Number(change);
 
     let newIdx;
-    if (adjustedIdx >= this.props.images.length) {
+    if (adjustedIdx >= images.length) {
       newIdx = 0;
     } else if (adjustedIdx < 0) {
-      newIdx = this.props.images.length - 1;
+      newIdx = images.length - 1;
     } else {
       newIdx = adjustedIdx;
     }
@@ -35,13 +37,13 @@ class Carousel extends React.Component {
   }
 
   render() {
+    const { images, hasMultipleImages } = this.props;
     const { imageIdx = 0 } = this.state;
 
     return (
       <CarouselContainer>
-        <ImageContainer Img={this.props.images[imageIdx]}>
-
-          <CornerContainer hasMultipleImages={this.props.hasMultipleImages}>
+        <ImageContainer Img={images[imageIdx]}>
+          <CornerContainer hasMultipleImages={hasMultipleImages}>
             <SlideButton
               onClick={() => this.Slide(RIGHT)}
               className="float-left"

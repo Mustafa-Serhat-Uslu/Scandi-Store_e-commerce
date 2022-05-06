@@ -2,8 +2,6 @@ import styled from "styled-components";
 
 export const IncButton = styled.button`
   position: relative;
-  /* width: ${({ onMini }) => (onMini ? "25px" : "45px")};
-  height: ${({ onMini }) => (onMini ? "25px" : "45px")}; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +30,7 @@ export const IncButton = styled.button`
 
     > .Inc {
       position: absolute;
-      
+
       &.onMiniCart {
         top: 2px;
       }
@@ -44,7 +42,6 @@ export const IncButton = styled.button`
 
     > .Dec {
       position: absolute;
-      /* top: ${({ onMini }) => (onMini ? "10px" : "20px")}; */
 
       &.onMiniCart {
         top: 10px;
@@ -53,16 +50,17 @@ export const IncButton = styled.button`
       &.onCartPage {
         top: 20px;
       }
-
     }
 
+    :hover {
+      transition: all 0.3s ease-in-out;
+      background-color: #eeeeee;
+    }
   }
 `;
 
 export const DecButton = styled.button`
   position: relative;
-  /* width: ${({ onMini }) => (onMini ? "25px" : "45px")};
-  height: ${({ onMini }) => (onMini ? "25px" : "45px")}; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,5 +78,10 @@ export const DecButton = styled.button`
   &.onCartPage {
     width: 45px;
     height: 45px;
+  }
+
+  :hover {
+    transition: all 0.3s ease-in-out;
+    background-color: #eeeeee;
   }
 `;

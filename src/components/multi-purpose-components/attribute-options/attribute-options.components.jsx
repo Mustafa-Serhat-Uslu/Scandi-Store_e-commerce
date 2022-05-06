@@ -15,8 +15,7 @@ class AttributeOptions extends React.Component {
 
     const { placement, attribute, inStock, productId, attributeCount, attributesWithSelectedChoices } = this.props;
     const { name } = attribute;
-
-    let attributeChoice = undefined;
+    let attributeChoice = null;
 
     if ( attributesWithSelectedChoices && Object.keys(attributesWithSelectedChoices)) {
       attributeChoice = attributesWithSelectedChoices[name];
@@ -29,7 +28,7 @@ class AttributeOptions extends React.Component {
           key={productId + name}
           placement={placement}
           options={attribute.items}
-          isColor={name == "Color"}
+          isColor={name === "Color"}
           name={name}
           inStock={inStock}
           productId={productId}

@@ -1,7 +1,7 @@
 // Updates global options for a product
 export const updateOptions = (productOptions, newOption) => {
 
-  const attributeToSet = Object.keys(newOption).find((key) => key != "id");
+  const attributeToSet = Object.keys(newOption).find((key) => key !== "id");
   const newAttributeVal = Object.entries(newOption)[1][1];
 
   let existingOptionsForProduct = productOptions?.find(

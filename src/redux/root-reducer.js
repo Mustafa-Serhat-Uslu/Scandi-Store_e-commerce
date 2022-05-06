@@ -6,16 +6,16 @@ import cartReducer from "./cart/cart.reducer";
 import optionsReducer from "./options/options.reducer";
 import switcherReducer from "./switcher/switcher.reducer";
 
-const persistConfig = { // whitelist persist items
+const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["cart", "options", "switcher"]
+  whitelist: ["cart", "options", "switcher"],
 };
 
 const rootReducer = combineReducers({
   cart: cartReducer,
   options: optionsReducer,
-  switcher: switcherReducer
+  switcher: switcherReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);

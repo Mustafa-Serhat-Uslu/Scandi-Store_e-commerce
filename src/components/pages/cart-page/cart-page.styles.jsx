@@ -6,7 +6,7 @@ export const CartLabel = styled.div`
   top: 18%;
   left: 8%;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 32px;
   line-height: 40px;
   text-transform: uppercase;
@@ -36,19 +36,20 @@ export const CartBottomInfo = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  row-gap: 12px;
 `;
 
 export const BottomInfoSpan = styled.div`
   font-family: "Raleway";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 24px;
   line-height: 28px;
+  white-space: pre;
 
   color: #1d1f22;
 
   flex: none;
   order: 0;
   flex-grow: 0;
-  margin: 8px 0px;
 `;

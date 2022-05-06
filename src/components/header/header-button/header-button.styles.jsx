@@ -52,7 +52,7 @@ export const ButtonLabel = styled.div`
   height: 20px;
   font-family: "Raleway";
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   font-size: 18px;
   line-height: 120%;
   display: flex;

@@ -4,25 +4,23 @@ import { connect } from "react-redux";
 import {
   BlackCircleContainer,
   CartCount,
-  EmptyCartContainer
+  EmptyCartContainer,
 } from "./cart-icon.styles";
 
 import { ReactComponent as CartSvg } from "../../../assets/EmptyCart.svg";
 import { ReactComponent as BlackCircleSvg } from "../../../assets/MiniCartBlackCircle.svg";
-
 import { toggleCartHidden } from "../../../redux/cart/cart.actions";
-import { selectCartItemsCount } from "../../../redux/cart/cart.selectors";
-import { createStructuredSelector, StructuredSelectorCreator } from "reselect";
 
 class CartIcon extends React.Component {
   render() {
+    const {cartCount, toggleCartHidden} = this.props;
     let cartCountCircle;
 
     if (this.props.cartCount) {
       cartCountCircle = (
         <BlackCircleContainer>
           <BlackCircleSvg />
-          <CartCount>{this.props.cartCount}</CartCount>
+          <CartCount>{cartCount}</CartCount>
         </BlackCircleContainer>
       );
     } else {
@@ -30,7 +28,7 @@ class CartIcon extends React.Component {
     }
 
     return (
-      <EmptyCartContainer onClick={this.props.toggleCartHidden}>
+      <EmptyCartContainer onClick={toggleCartHidden}>
         {cartCountCircle}
         <CartSvg />
       </EmptyCartContainer>
@@ -39,15 +37,7 @@ class CartIcon extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleCartHidden: () => dispatch(toggleCartHidden())
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
-//pull state in from redux to local and get the value
-// Here memoization is used, via Reselect library, if no memoization is used,
-// even if the cart state isnt changed but the user state is changed, this func still gets a new state object
-// still re-renders the whole component, that is dumb
-const mapStateToProps = createStructuredSelector({
-  itemCount: selectCartItemsCount
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
+export default connect(null, mapDispatchToProps)(CartIcon);

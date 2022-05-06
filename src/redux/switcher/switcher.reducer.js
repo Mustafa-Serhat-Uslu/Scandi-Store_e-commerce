@@ -3,7 +3,7 @@ import SwitcherActionTypes from "./switcher.types";
 const INITIAL_STATE = {
   hidden: true,
   selectedCurrency: {
-    label: "USD", // default currency is $ USD
+    label: "USD", // Default currency is $ USD
     symbol: "$",
   },
 };

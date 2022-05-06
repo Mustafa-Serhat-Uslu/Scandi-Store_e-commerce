@@ -9,10 +9,9 @@ export const AttributeContainer = styled.div`
   row-gap: 5px;
   text-transform: uppercase;
 
-  &.onMiniCart{
+  &.onMiniCart {
     row-gap: 0px;
   }
-
 `;
 
 export const AttributeLabelSpan = styled.span`
@@ -27,12 +26,15 @@ export const AttributeLabelSpan = styled.span`
     font-family: "Raleway";
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 15px;
     line-height: 14px;
+    display: flex;
+    align-items: center;
 
     flex: none;
     order: 0;
     flex-grow: 0;
-    margin: 1px 0px;
+    margin: 8px 0px;
+    text-transform: capitalize;
   }
 `;

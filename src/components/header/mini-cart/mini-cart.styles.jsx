@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const MiniCartContainer = styled.div`
   position: absolute;
   width: 325px;
-  height: 540px;
+  height: 550px;
   right: 100px;
   top: 78px;
   z-index: 1;
@@ -17,6 +17,10 @@ export const MiniCartContainer = styled.div`
 
   > span {
     margin: 16px;
+    font-family: "Raleway";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
   }
 
   animation: growDown 300ms ease-in-out forwards;
@@ -51,8 +55,10 @@ export const ScrollView = styled.div`
     font-size: 18px;
   }
 
-    /* width */
-    ::-webkit-scrollbar {
+  /* Scroller styles */
+
+  /* width */
+  ::-webkit-scrollbar {
     width: 6px;
   }
 

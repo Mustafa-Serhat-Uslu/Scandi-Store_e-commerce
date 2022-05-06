@@ -17,7 +17,7 @@ export const HeaderContainer = styled.div`
 export const PageContainer = styled.div`
   width: 100vw;
   height: 100vw;
-  transition: all 0.1s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   &.miniCartHidden {
     background: rgba(0, 0, 0, 0.05);

@@ -14,7 +14,7 @@ export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-size: contain,cover;
+  background-size: contain, cover;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url(${({ Img }) => Img});
@@ -58,7 +58,7 @@ export const SlideButton = styled.button`
 `;
 
 export const CornerContainer = styled.div`
-  display: ${({hasMultipleImages}) => !hasMultipleImages && "none"};
+  display: ${({ hasMultipleImages }) => !hasMultipleImages && "none"};
   position: absolute;
   right: 5px;
   bottom: 6px;

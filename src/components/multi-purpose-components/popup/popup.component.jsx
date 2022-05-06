@@ -6,19 +6,21 @@ import { PopupWindow, PopupContentsContainer } from "./popup.styles";
 class Popup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { popupActive: this.props.initPopup };
+    const {initPopup} = this.props;
+    this.state = { popupActive: initPopup };
   }
 
   render() {
+    const { popupActive } = this.state;
+    const { customEvent } = this.props;
+
     let handleClick = () => {
       this.setState({ popupActive: false });
-      this.props.customEvent();
+      customEvent();
     };
 
-    console.log(this.state.popupActive);
-
     return (
-      <PopupWindow isActive={this.state.popupActive}>
+      <PopupWindow isActive={popupActive}>
         <PopupContentsContainer>
           <span>
             Please select all attributes for the item before adding to cart :)
