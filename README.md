@@ -1,4 +1,4 @@
-# ScandiWeb-FrontEndTestDesign
+# Scandi Store
 
 An e-commerce application. 
 
